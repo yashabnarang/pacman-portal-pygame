@@ -1,2 +1,2 @@
-# pacman-portal-pygame
+# Pacman Portal
  
