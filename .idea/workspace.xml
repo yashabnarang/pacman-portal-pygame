@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e9f98ad-61cf-483b-82a1-8f5f3534fb94" name="Default Changelist" comment="" />
+    <list default="true" id="8e9f98ad-61cf-483b-82a1-8f5f3534fb94" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts/8-Bit Madness.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/menu.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/menu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pacman_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/pacman_game.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="yashabnarang &lt;ynara50@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Y0TZeIuA35OGhAm0gUBoOnz8L6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -84,56 +112,73 @@
       <option name="presentableId" value="Default" />
       <updated>1582078568650</updated>
     </task>
+    <task id="LOCAL-00001" summary="added menu image">
+      <created>1583037666712</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583037666713</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added menu image" />
+    <option name="LAST_COMMIT_MESSAGE" value="added menu image" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582095284792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1582095284792" />
-    <state width="1515" height="271" key="GridCell.Tab.0.bottom" timestamp="1583031633895">
+    <state x="424" y="28" key="CommitChangelistDialog2" timestamp="1583037664892">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583031633895" />
-    <state width="1515" height="271" key="GridCell.Tab.0.center" timestamp="1583031633895">
+    <state x="424" y="28" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1583037664892" />
+    <state width="1515" height="271" key="GridCell.Tab.0.bottom" timestamp="1583138301006">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1583031633895" />
-    <state width="1515" height="271" key="GridCell.Tab.0.left" timestamp="1583031633895">
+    <state width="1515" height="271" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
+    <state width="1515" height="271" key="GridCell.Tab.0.center" timestamp="1583138301006">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1583031633895" />
-    <state width="1515" height="271" key="GridCell.Tab.0.right" timestamp="1583031633895">
+    <state width="1515" height="271" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
+    <state width="1515" height="271" key="GridCell.Tab.0.left" timestamp="1583138301006">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1583031633895" />
-    <state width="1515" height="277" key="GridCell.Tab.1.bottom" timestamp="1582768010795">
+    <state width="1515" height="271" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
+    <state width="1515" height="271" key="GridCell.Tab.0.right" timestamp="1583138301006">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1582768010795" />
-    <state width="1515" height="277" key="GridCell.Tab.1.center" timestamp="1582768010795">
+    <state width="1515" height="271" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
+    <state width="1515" height="277" key="GridCell.Tab.1.bottom" timestamp="1583129776039">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1582768010795" />
-    <state width="1515" height="277" key="GridCell.Tab.1.left" timestamp="1582768010795">
+    <state width="1515" height="277" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
+    <state width="1515" height="277" key="GridCell.Tab.1.center" timestamp="1583129776039">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1582768010795" />
-    <state width="1515" height="277" key="GridCell.Tab.1.right" timestamp="1582768010795">
+    <state width="1515" height="277" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
+    <state width="1515" height="277" key="GridCell.Tab.1.left" timestamp="1583129776039">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1582768010795" />
-    <state x="277" y="76" key="SettingsEditor" timestamp="1582078759996">
+    <state width="1515" height="277" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
+    <state width="1515" height="277" key="GridCell.Tab.1.right" timestamp="1583129776039">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="277" y="76" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1582078759996" />
+    <state width="1515" height="277" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
+    <state x="277" y="76" key="SettingsEditor" timestamp="1583034175853">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="277" y="76" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1583034175853" />
     <state x="465" y="258" key="com.intellij.ide.util.TipDialog" timestamp="1583017338464">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="465" y="258" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1583017338464" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1582752341507">
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1583128492895">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1582752341507" />
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1583128492895" />
   </component>
 </project>

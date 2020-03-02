@@ -46,17 +46,17 @@ class Grid:
         self.game = game
 
         # Static Nodes
-        self.create_node(n=9, row=18)
-        self.create_node(n=13, row=18)
-        self.create_node(n=17, row=18)
+        for row in range(13, 122, 2):
+            for col in range(2, 51*2, 2):
+                self.create_node(n=col, row=row)
 
     def create_node(self, n, row):
         node = Node(game=self.game)
         rect = node.rect
         width, height = rect.size
-        node.x = width + 2 * n * width
+        node.x = width + 2 * n * (width/4)
         rect.x = node.x
-        rect.y = rect.height + 2 * height * row
+        rect.y = rect.height + 2 * (height/4) * row
         self.nodes.add(node)
 
     def check_ship_hit(self):
@@ -111,8 +111,8 @@ class Player:
                 self.animationDirection = 0
 
     def limit_to_screen(self, game):
-        self.rect.top = max(0, min(game.WINDOW_HEIGHT - self.rect.height - 55, self.rect.top))
-        self.rect.left = max(0, min(game.WINDOW_WIDTH - self.rect.width + 35, self.rect.left))
+        self.rect.top = max(73, min(game.WINDOW_HEIGHT - self.rect.height - 55, self.rect.top))
+        self.rect.left = max(-28, min(game.WINDOW_WIDTH - self.rect.width + 48, self.rect.left))
 
     def move_ip(self, game):
         if self.velocity == Vector():
@@ -151,7 +151,68 @@ class Player:
     def update(self, game):
         self.check_collisions(game=game)
         self.move(game=game)
-        # self.change_frame()
+        self.draw(game=game)
+
+
+# -------------------------------------------------------------------------------------
+class Enemy:
+    SPEED = 6
+
+    def __init__(self, rect, velocity=Vector()):
+        self.enemyAnimation = ['images/blinky0.png', 'images/blinky1.png']
+        self.currentFrame, self.animationDirection = 0, 0
+        self.startF, self.endF = 0, len(self.enemyAnimation)-1
+        self.rect = rect
+        self.velocity = velocity
+        self.enemy = pg.Rect(300, 100, 50, 50)
+        self.image = pg.transform.rotozoom(pg.image.load(self.enemyAnimation[self.currentFrame]), 0, 0.06)
+
+    def __repr__(self):
+        return "Enemy(rect={},velocity={})".format(self.rect, self.velocity)
+
+    def change_frame(self):
+        if self.velocity == Vector():
+            return
+        if self.startF <= self.currentFrame < self.endF:
+            self.currentFrame += 1
+        else:
+            self.currentFrame = self.startF
+
+    def limit_to_screen(self, game):
+        self.rect.top = max(73, min(game.WINDOW_HEIGHT - self.rect.height - 55, self.rect.top))
+        if game.m == 0:
+            self.rect.left = max(-28, min(game.WINDOW_WIDTH - self.rect.width + 48, self.rect.left))
+        else:
+            self.rect.left = max(-300, min(game.WINDOW_WIDTH - self.rect.width + 48, self.rect.left))
+
+    def move_ip(self, game):
+        if self.velocity == Vector():
+            return
+        self.rect.move_ip(self.velocity.x, self.velocity.y)
+        self.limit_to_screen(game)
+
+    def move(self, game):
+        if self.velocity == Vector():
+            return
+        tempX = self.velocity.x
+        tempY = self.velocity.y
+        self.rect.left += self.velocity.x
+        self.rect.top += self.velocity.y
+        if tempX != 0 or tempY != 0:
+            self.change_frame()
+
+        self.limit_to_screen(game)
+
+    def check_collisions(self, game):
+        pass
+
+    def draw(self, game):
+        self.image = pg.transform.rotozoom(pg.image.load(self.enemyAnimation[self.currentFrame]), 0, 0.06)
+        game.surface.blit(self.image, self.rect)
+
+    def update(self, game):
+        self.check_collisions(game=game)
+        self.move(game=game)
         self.draw(game=game)
 
 
@@ -186,7 +247,13 @@ class Game:
         logo = pg.image.load('images/pac2.png')
         pg.display.set_icon(logo)
         self.WINDOW_WIDTH, self.WINDOW_HEIGHT = 550, 700
-        self.font = pg.font.SysFont(None, 48)
+        # self.font = pg.font.SysFont(None, 48)
+
+        self.m = 0
+        self.mAnimate = Enemy(pg.Rect(self.WINDOW_WIDTH, 363, 50, 50), Vector())
+        self.mAnimate.enemyAnimation = ['images/menu0.png', 'images/menu1.png', 'images/menu2.png', 'images/menu3.png',
+                                        'images/menu4.png', 'images/menu5.png', 'images/menu6.png']
+
         self.player = Player(pg.Rect(259, 363, 50, 50), Vector())
 
         # Audio
@@ -207,6 +274,7 @@ class Game:
         self.surface = pg.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT), 0, 32)
         self.grid = Grid(self)
         self.bImage = pg.image.load('images/pacGrid.png')
+        self.mImage = pg.image.load('images/menu.png')
         self.mainClock = pg.time.Clock()
 
     @staticmethod
@@ -252,24 +320,65 @@ class Game:
         self.surface.blit(self.bImage, (0, 46))
         self.grid.update()
 
-        # 2 Red Rectangles
-        # pg.draw.rect(self.surface, self.WALL_COLOR, (0, 46, 29, 260))
-        # pg.draw.rect(self.surface, self.WALL_COLOR, (0, 335, 29, 319))
+        # 4 Red Rectangles
+        pg.draw.rect(self.surface, self.WALL_COLOR, (0, 40, 29, 260))
+        pg.draw.rect(self.surface, self.WALL_COLOR, (0, 341, 29, 319))
+        pg.draw.rect(self.surface, self.WALL_COLOR, (self.WINDOW_WIDTH-29, 40, 29, 260))
+        pg.draw.rect(self.surface, self.WALL_COLOR, (self.WINDOW_WIDTH-29, 341, 29, 319))
 
         self.player.update(game=self)
         pg.display.update()
 
     def menu(self):
-        self.surface.fill(self.BACKGROUND_COLOR)
+        self.m = 1
+        self.surface.blit(self.mImage, (0, 0))
+        self.mAnimate.update(game=self)
+        pg.display.update()
+
+        bitFont = pg.font.Font('fonts/8-Bit Madness.ttf', 28)
+        blinkC, pinkC, inkyC, clydeC = (249, 0, 0), (249, 141, 224), (5, 249, 249), (249, 138, 13)
+        text = bitFont.render('Pac-man', True, (249, 241, 0), (0, 0, 0))
+        text0 = bitFont.render('Blinky', True, blinkC, (0, 0, 0))
+        text1 = bitFont.render('Pinky', True, pinkC, (0, 0, 0))
+        text2 = bitFont.render('Inky', True, inkyC, (0, 0, 0))
+        text3 = bitFont.render('Clyde', True, clydeC, (0, 0, 0))
+        text4 = bitFont.render('How High Can You Score?', True, (249, 241, 0), (0, 0, 0))
+        textRect, textRect0, textRect1, textRect2, textRect3, textRect4 \
+            = text.get_rect(), text0.get_rect(), text1.get_rect(), text2.get_rect(), text3.get_rect(), text4.get_rect()
+        textRect.center, textRect0.center, textRect1.center, textRect2.center, textRect3.center, textRect4.center \
+            = (75+40, 450), (185+40, 450), (275+40, 450), (350+40, 450), (425+40, 450), (275+10, 450)
 
         # Wait for Keypress To Move To Next State
         key_pressed = False
+        count = 0
+        temp = -1
         while not key_pressed:
+            if count == 150:
+                temp *= -1
+                count = 0
+            count += 1
+            self.mAnimate.velocity = Enemy.SPEED * Vector(1 * temp, 0)
+            self.surface.blit(self.mImage, (0, 0))
+            if self.mAnimate.velocity == Enemy.SPEED * Vector(-1, 0):
+                self.mAnimate.rect.left = self.mAnimate.rect.left
+                self.mAnimate.startF, self.mAnimate.endF = 0, 2
+                self.surface.blit(text, textRect)
+                self.surface.blit(text0, textRect0)
+                self.surface.blit(text1, textRect1)
+                self.surface.blit(text2, textRect2)
+                self.surface.blit(text3, textRect3)
+            else:
+                self.mAnimate.startF, self.mAnimate.endF = 3, len(self.mAnimate.enemyAnimation)-1
+                self.surface.blit(text4, textRect4)
+            self.mAnimate.update(game=self)
+            pg.display.update()
             for e in pg.event.get():
                 if e.type == QUIT or e.type == KEYDOWN and e.key == K_ESCAPE:
                     Game.terminate()
                 elif e.type == KEYDOWN and e.key == K_SPACE:
                     key_pressed = True
+            time.sleep(0.02)
+        self.m = 0
         self.play()
 
     def play(self):
@@ -282,7 +391,7 @@ class Game:
             self.update()
             # can't move until intro music stops
             while pg.mixer.music.get_busy():
-                time.sleep(1)
+                time.sleep(0.02)
             time.sleep(0.02)
             self.mainClock.tick(self.FPS)
         Game.terminate()
