@@ -3,19 +3,88 @@
   <component name="ChangeListManager">
     <list default="true" id="8e9f98ad-61cf-483b-82a1-8f5f3534fb94" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/button.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/fonts/8-Bit Madness.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Pacman.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/PixelArt.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/blinky0.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/blinky1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/blinky7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clyde7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/death0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/death1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/death2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/death3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/death4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/inky7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu.psd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu0.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu1.psd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/menu2.psd" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu4.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu5.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/images/menu6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pacman.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pacman.psd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pacman0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pacman1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pacman2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/pinky7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/powerPebble.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/powerPebble2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/run0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/run1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/run2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/run3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/Arsenic1987_PacmanRemix.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/eat.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/eating.aup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/eating.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/eating_data/e08/d08/e08086d0.au" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/eating_data/e08/d08/e08089df.au" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/game_over.aup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/game_over.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/game_over.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/game_over_data/e08/d08/e08080ab.au" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/game_over_data/e08/d08/e0808ffb.au" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dodger_game.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/menu.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/menu.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pacman_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/pacman_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/game_over.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/pickup.wav" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +113,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -52,6 +122,27 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.pacman_game">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pacman" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="D:/Users/Yash/Desktop/PacManPortal-master" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:/Users/Yash/Desktop/PacManPortal-master/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="alienInvaders" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,9 +185,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="portal" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pacman" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/AppData/Local/Temp/Rar$DIa13468.41892" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/AppData/Local/Temp/Rar$DIa13468.41892/portal.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pacman_game" />
+        <item itemvalue="Python.portal" />
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
@@ -128,57 +242,69 @@
     <option name="LAST_COMMIT_MESSAGE" value="added menu image" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="487" y="236" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583737263820">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="487" y="236" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1583737263820" />
     <state x="499" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582095284792">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1582095284792" />
+    <state x="496" y="30" key="#main" timestamp="1583706703084">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="496" y="30" key="#main/0.0.1536.864@0.0.1536.864" timestamp="1583706703084" />
     <state x="424" y="28" key="CommitChangelistDialog2" timestamp="1583037664892">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="424" y="28" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1583037664892" />
-    <state width="1515" height="271" key="GridCell.Tab.0.bottom" timestamp="1583138301006">
+    <state width="1515" height="268" key="GridCell.Tab.0.bottom" timestamp="1583826713847">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
-    <state width="1515" height="271" key="GridCell.Tab.0.center" timestamp="1583138301006">
+    <state width="1515" height="268" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583826713847" />
+    <state width="1515" height="268" key="GridCell.Tab.0.center" timestamp="1583826713847">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
-    <state width="1515" height="271" key="GridCell.Tab.0.left" timestamp="1583138301006">
+    <state width="1515" height="268" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1583826713847" />
+    <state width="1515" height="268" key="GridCell.Tab.0.left" timestamp="1583826713847">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
-    <state width="1515" height="271" key="GridCell.Tab.0.right" timestamp="1583138301006">
+    <state width="1515" height="268" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1583826713847" />
+    <state width="1515" height="268" key="GridCell.Tab.0.right" timestamp="1583826713847">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="271" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1583138301006" />
-    <state width="1515" height="277" key="GridCell.Tab.1.bottom" timestamp="1583129776039">
+    <state width="1515" height="268" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1583826713847" />
+    <state width="1515" height="281" key="GridCell.Tab.1.bottom" timestamp="1583826230940">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
-    <state width="1515" height="277" key="GridCell.Tab.1.center" timestamp="1583129776039">
+    <state width="1515" height="281" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583826230940" />
+    <state width="1515" height="281" key="GridCell.Tab.1.center" timestamp="1583826230940">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
-    <state width="1515" height="277" key="GridCell.Tab.1.left" timestamp="1583129776039">
+    <state width="1515" height="281" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1583826230940" />
+    <state width="1515" height="281" key="GridCell.Tab.1.left" timestamp="1583826230940">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
-    <state width="1515" height="277" key="GridCell.Tab.1.right" timestamp="1583129776039">
+    <state width="1515" height="281" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1583826230940" />
+    <state width="1515" height="281" key="GridCell.Tab.1.right" timestamp="1583826230940">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="277" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1583129776039" />
+    <state width="1515" height="281" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1583826230940" />
     <state x="277" y="76" key="SettingsEditor" timestamp="1583034175853">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="277" y="76" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1583034175853" />
-    <state x="465" y="258" key="com.intellij.ide.util.TipDialog" timestamp="1583017338464">
+    <state x="465" y="258" key="com.intellij.ide.util.TipDialog" timestamp="1583778055971">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="465" y="258" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1583017338464" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1583128492895">
+    <state x="465" y="258" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1583778055971" />
+    <state x="660" y="174" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1583222980158">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1583128492895" />
+    <state x="660" y="174" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1583222980158" />
+    <state x="430" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1583821910437">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="430" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1583821910437" />
   </component>
 </project>
