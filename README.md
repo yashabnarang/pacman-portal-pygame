@@ -2,7 +2,7 @@
 ### What is Pacman Portal
 Remake of **Pac-Man (1980)** by Namco with added characteristics of the portal gun from **Portal (2007)** by Valve.
 ### Gameplay
-![Image of Pac-Man](pacman gameplay.gif)
+![Image of Pac-Man](pacman-gameplay.gif)
 Coming Soon...
 ### How it was made
 IDE (Integrated Development Environment):
