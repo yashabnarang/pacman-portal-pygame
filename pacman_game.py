@@ -39,6 +39,36 @@ class Node(Sprite):
 
 
 # -------------------------------------------------------------------------------------
+class Fruit(Sprite):
+
+    def __init__(self, game):
+        super().__init__()
+        self.game = game
+        self.screen = self.game.surface
+
+        self.image = pg.image.load('images/cherry.png')
+        self.rect = self.image.get_rect()
+
+        self.rect.left = 259
+        self.rect.top = 363
+        self.x = float(self.rect.x)
+
+    def width(self): return self.rect.width
+
+    def height(self): return self.rect.height
+
+    def check_edges(self):
+        r = self.rect
+        s_r = self.screen.get_rect()
+        return r.right >= s_r.right or r.left <= 0
+
+    def draw(self): self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        self.draw()
+
+
+# -------------------------------------------------------------------------------------
 class Grid:
 
     def __init__(self, game):
@@ -87,6 +117,7 @@ class Grid:
             self.game.score += 50
         if len(self.nodes) == 0:
             self.game.level += 1
+            Enemy.SPEED += 1
             self.reset_grid()
 
     def reset_grid(self):
@@ -278,6 +309,12 @@ class Enemy:
     def change_frame(self):
         if self.velocity == Vector():
             return
+        if self.startF <= self.currentFrame < self.endF:
+            self.currentFrame += 1
+        else:
+            self.currentFrame = self.startF
+
+    def change_menu_frame(self):
         if self.startF <= self.currentFrame < self.endF:
             self.currentFrame += 1
         else:
@@ -711,7 +748,16 @@ class Game:
             self.menu()
 
         else:
+            '''
+            # Check Requirements for Fruit to Appear
+            if self.score % 700 == 0 or self.score % 1700 == 0:
+                self.fruitAppear = 1
+            # Fruit Appears
+            if self.fruitAppear == 1:
+                self.fruit.update()
+            '''
 
+            # Randomized Ghost Movement
             if self.mainClock.get_time() % random.randint(1, 40) == 0:
                 self.bCount = random.randint(1, 4)
                 if self.bCount == 1:
@@ -723,7 +769,6 @@ class Game:
                 else:  # 4
                     self.blinky.velocity = Enemy.SPEED * Vector(0, -1)
             self.blinky.update(game=self)
-
             if self.mainClock.get_time() % random.randint(1, 40) == 0:
                 self.pCount = random.randint(1, 4)
                 if self.pCount == 1:
@@ -735,7 +780,6 @@ class Game:
                 else:  # 4
                     self.pinky.velocity = Enemy.SPEED * Vector(0, -1)
             self.pinky.update(game=self)
-
             if self.mainClock.get_time() % random.randint(1, 40) == 0:
                 self.iCount = random.randint(1, 4)
                 if self.iCount == 1:
@@ -747,7 +791,6 @@ class Game:
                 else:  # 4
                     self.inky.velocity = Enemy.SPEED * Vector(0, -1)
             self.inky.update(game=self)
-
             # Randomized Clyde Movement
             # if current second are divisible by 3 or 7, actually move, else don't
             # self.cCount = random number between 1-4
@@ -790,41 +833,72 @@ class Game:
         hScore_button.draw_button()
 
         blinkC, pinkC, inkyC, clydeC = (249, 0, 0), (249, 141, 224), (5, 249, 249), (249, 138, 13)
-        text = self.bitFont.render('Pac-man', True, (249, 241, 0), (0, 0, 0))
         text0 = self.bitFont.render('Blinky', True, blinkC, (0, 0, 0))
         text1 = self.bitFont.render('Pinky', True, pinkC, (0, 0, 0))
         text2 = self.bitFont.render('Inky', True, inkyC, (0, 0, 0))
         text3 = self.bitFont.render('Clyde', True, clydeC, (0, 0, 0))
         text4 = self.bitFont.render('How High Can You Score?', True, (249, 241, 0), (0, 0, 0))
-        textRect, textRect0, textRect1, textRect2, textRect3, textRect4 \
-            = text.get_rect(), text0.get_rect(), text1.get_rect(), text2.get_rect(), text3.get_rect(), text4.get_rect()
-        textRect.center, textRect0.center, textRect1.center, textRect2.center, textRect3.center, textRect4.center \
-            = (75 + 40, 450), (185 + 40, 450), (275 + 40, 450), (350 + 40, 450), (425 + 40, 450), (275 + 10, 450)
+        textRect0, textRect1, textRect2, textRect3, textRect4 \
+            = text0.get_rect(), text1.get_rect(), text2.get_rect(), text3.get_rect(), text4.get_rect()
+        textRect0.center, textRect1.center, textRect2.center, textRect3.center, textRect4.center \
+            = (275, 450), (275, 450), (275, 450), (275, 450), (275, 450)
 
         # Wait for Keypress To Move To Next State
         key_pressed = False
         count = 0
         temp = -1
+        itemp = 0
+
+        blinky = self.blinky
+        pinky = self.pinky
+        inky = self.inky
+        clyde = self.clyde
+
+        blinky.rect.left, blinky.rect.top = 260, 410
+        pinky.rect.left, pinky.rect.top = 260, 410
+        inky.rect.left, inky.rect.top = 260, 410
+        clyde.rect.left, clyde.rect.top = 260, 410
+
         while not key_pressed:
+            itemp += 1
             if count == 150:
                 temp *= -1
                 count = 0
             count += 1
+
             self.mAnimate.velocity = Enemy.SPEED * Vector(1 * temp, 0)
             self.surface.blit(self.mImage, (0, 0))
-            if self.mAnimate.velocity == Enemy.SPEED * Vector(-1, 0):
-                self.mAnimate.rect.left = self.mAnimate.rect.left
-                self.mAnimate.startF, self.mAnimate.endF = 0, 2
-                self.surface.blit(text, textRect)
-                self.surface.blit(text0, textRect0)
-                self.surface.blit(text1, textRect1)
-                self.surface.blit(text2, textRect2)
-                self.surface.blit(text3, textRect3)
-            else:
-                self.mAnimate.startF, self.mAnimate.endF = 3, len(self.mAnimate.enemyAnimation) - 1
-                self.surface.blit(text4, textRect4)
+            if itemp < 300:
+                if self.mAnimate.velocity == Enemy.SPEED * Vector(-1, 0):
+                    self.mAnimate.rect.left = self.mAnimate.rect.left
+                    self.mAnimate.startF, self.mAnimate.endF = 0, 2
+                else:
+                    self.mAnimate.startF, self.mAnimate.endF = 3, len(self.mAnimate.enemyAnimation) - 1
+                    self.surface.blit(text4, textRect4)
 
-            self.mAnimate.update(game=self)
+                self.mAnimate.update(game=self)
+
+            # Individually Introduce
+            if 300 <= itemp <= 337:
+                self.surface.blit(text0, textRect0)
+                blinky.change_menu_frame()
+                blinky.update(self)
+            elif 337 <= itemp <= 375:
+                self.surface.blit(text1, textRect1)
+                pinky.change_menu_frame()
+                pinky.update(self)
+            elif 375 <= itemp <= 412:
+                self.surface.blit(text2, textRect2)
+                inky.change_menu_frame()
+                inky.update(self)
+            elif 412 <= itemp <= 450:
+                self.surface.blit(text3, textRect3)
+                clyde.change_menu_frame()
+                clyde.update(self)
+            elif itemp >= 450:
+                itemp = 0
+                temp *= -1
+
             play_button.draw_button()
             hScore_button.draw_button()
             pg.display.update()
