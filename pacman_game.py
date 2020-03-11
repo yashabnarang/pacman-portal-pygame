@@ -4,7 +4,6 @@ import pygame as pg
 import random
 from button import Button
 from pygame.locals import *
-from settings import Settings
 from pygame.sprite import Sprite
 from vector import Vector
 
@@ -103,32 +102,6 @@ class Grid:
         self.check_hit()
         self.nodes.update()
         self.powerNodes.update()
-
-
-# -------------------------------------------------------------------------------------
-class Portal:
-
-    def __init__(self, sett, screen, player):
-        super(Portal, self).__init__()
-        self.screen = screen
-
-        self.rect = pg.Rect(0, 0, sett.bullet_width,
-                            sett.bullet_height)
-        self.rect.centerx = player.rect.centerx
-        self.rect.top = player.rect.top
-
-        self.y = float(self.rect.y)
-
-        self.color = sett.bullet_color
-        self.speed_factor = sett.bullet_speed_factor
-
-    def update(self):
-        self.y -= self.speed_factor
-        self.rect.y = self.y
-
-    def draw_bullet(self):
-        """Draw the bullet to the screen."""
-        pg.draw.rect(self.screen, self.color, self.rect)
 
 
 # -------------------------------------------------------------------------------------
@@ -256,6 +229,17 @@ class Player:
             time.sleep(0.02)
 
     def check_collisions(self, game):
+        if game.bluePortal.active == 1 and game.oranPortal.active == 1:
+            if self.rect.colliderect(game.bluePortal.rect):
+                game.audio.play_sound(4)
+                game.player.rect.left, game.player.rect.top = game.oranPortal.rect.left, game.oranPortal.rect.top
+                game.bluePortal.remove_portal()
+                game.oranPortal.remove_portal(400)
+            if self.rect.colliderect(game.oranPortal.rect):
+                game.audio.play_sound(4)
+                game.player.rect.left, game.player.rect.top = game.bluePortal.rect.left, game.bluePortal.rect.top
+                game.bluePortal.remove_portal()
+                game.oranPortal.remove_portal(400)
         for j in range(len(game.walls)):
             if self.rect.colliderect(game.walls[j]):
                 return True
@@ -306,12 +290,6 @@ class Enemy:
         else:
             self.rect.left = max(-300, min(game.WINDOW_WIDTH - self.rect.width + 48, self.rect.left))
 
-    def move_ip(self, game):
-        if self.velocity == Vector():
-            return
-        self.rect.move_ip(self.velocity.x, self.velocity.y)
-        self.limit_to_screen(game)
-
     def move(self, game):
         if self.velocity == Vector():
             return
@@ -361,6 +339,83 @@ class Enemy:
 
 
 # -------------------------------------------------------------------------------------
+class Portal:
+    SPEED = 30
+
+    def __init__(self, rect, velocity=Vector()):
+        self.portalAnimation = ['images/bluePortal.png', 'images/animatePortal.png']
+        self.currentFrame, self.active = 0, 0
+        self.startF, self.endF = 0, 1  # len(self.enemyAnimation) - 1
+        self.rect = rect
+        self.velocity = velocity
+        self.image = pg.transform.rotozoom(pg.image.load(self.portalAnimation[self.currentFrame]), 0, 0.06)
+
+    def __repr__(self):
+        return "Portal(rect={},velocity={})".format(self.rect, self.velocity)
+
+    def create_portal(self, game):
+        self.active = 0
+        pX, pY = game.player.rect.centerx, game.player.rect.centery
+        if game.player.currentAngle == 0:
+            cX, cY = 10, -10
+            self.velocity = Portal.SPEED * Vector(1, 0)
+        elif game.player.currentAngle == 180:
+            cX, cY = -35, -10
+            self.velocity = Portal.SPEED * Vector(-1, 0)
+        elif game.player.currentAngle == -90:
+            cX, cY = -10, 10
+            self.velocity = Portal.SPEED * Vector(0, 1)
+        else:
+            cX, cY = -10, -35
+            self.velocity = Portal.SPEED * Vector(0, -1)
+        self.rect.left, self.rect.top = pX + cX, pY + cY
+
+    def remove_portal(self, x=350, y=660):
+        self.active = 0
+        self.rect.left, self.rect.top = x, y
+
+    def change_frame(self):
+        if self.startF <= self.currentFrame < self.endF:
+            self.currentFrame += 1
+        else:
+            self.currentFrame = self.startF
+
+    def limit_to_screen(self, game):
+        self.rect.top = max(73, min(game.WINDOW_HEIGHT - self.rect.height - 55, self.rect.top))
+        if game.m == 0:
+            self.rect.left = max(-28, min(game.WINDOW_WIDTH - self.rect.width + 48, self.rect.left))
+        else:
+            self.rect.left = max(-300, min(game.WINDOW_WIDTH - self.rect.width + 48, self.rect.left))
+
+    def move(self, game):
+        self.change_frame()
+        if self.check_collisions(game):
+            self.velocity = Vector()
+            self.active = 1
+        if self.rect.top == 73 or self.rect.top == 663 and self.rect.left != 350 and self.rect.left != 400:
+            self.active = 1
+        if self.active == 0:
+            self.rect.left += self.velocity.x
+            self.rect.top += self.velocity.y
+        self.limit_to_screen(game)
+
+    def check_collisions(self, game):
+        for j in range(len(game.walls)):
+            if self.rect.colliderect(game.walls[j]):
+                return True
+        return False
+
+    def draw(self, game):
+        self.image = pg.transform.rotozoom(pg.image.load(self.portalAnimation[self.currentFrame]), 0, 0.06)
+        game.surface.blit(self.image, self.rect)
+
+    def update(self, game):
+        self.check_collisions(game=game)
+        self.move(game=game)
+        self.draw(game=game)
+
+
+# -------------------------------------------------------------------------------------
 class Audio:  # sound(s) and background music
     def __init__(self, sounds, playing):
         self.sounds = {}
@@ -398,15 +453,13 @@ class Game:
         self.mAnimate.enemyAnimation = ['images/menu0.png', 'images/menu1.png', 'images/menu2.png', 'images/menu3.png',
                                         'images/menu4.png', 'images/menu5.png', 'images/menu6.png']
 
+        # Pac-Man and Ghosts
         self.player = Player(pg.Rect(259, 363, 25, 25), Vector())
         self.blinky = Enemy(pg.Rect(259, 250, 25, 25), Vector())
         self.pinky = Enemy(pg.Rect(259, 305, 25, 25), Vector())
         self.inky = Enemy(pg.Rect(230, 305, 25, 25), Vector())
         self.clyde = Enemy(pg.Rect(285, 305, 25, 25), Vector())
-
         self.bCount, self.iCount, self.pCount, self.cCount = 0, 0, 0, 0
-        self.btemp, self.itemp, self.ptemp = 1, -1, 1
-
         self.pinky.enemyAnimation = ['images/pinky0.png', 'images/pinky1.png', 'images/pinky2.png', 'images/pinky3.png',
                                      'images/pinky4.png', 'images/pinky5.png', 'images/pinky6.png', 'images/pinky7.png',
                                      'images/run0.png', 'images/run1.png']
@@ -422,10 +475,12 @@ class Game:
         self.death_src = 'sounds/game_over.ogg'
 
         # self.background_src = 'sounds/ghost-normal-move.ogg'
-        self.EAT_SOUND, self.GHOST, self.GAME_OVER = 0, 1, 2
+        self.EAT_SOUND, self.GHOST, self.GAME_OVER, self.PORTAL_SOUND, self.PORTAL_CLOSE = 0, 1, 2, 3, 4
         sounds = [{self.EAT_SOUND: 'sounds/eat.ogg',
                    self.GHOST: 'sounds/ghost-normal-move.ogg',
-                   self.GAME_OVER: 'sounds/game_over.ogg'}]
+                   self.GAME_OVER: 'sounds/game_over.ogg',
+                   self.PORTAL_SOUND: 'sounds/makePortal.ogg',
+                   self.PORTAL_CLOSE: 'sounds/closePortal.ogg'}]
         self.audio = Audio(sounds=sounds, playing=True)
 
         # Static Bricks (Player/Node)
@@ -516,7 +571,22 @@ class Game:
         self.walls = [w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19, w20, w21,
                       w22, w23, w24, w25, w26, w27, w28, w29, w30, w31, w32, w33, w34, w35, w36, w37, w38, w39, w40]
 
-        self.score, self.level, self.topScores = 0, 0, [0, 0, 0, 0, 0]
+        # Portals
+        self.bluePortal = Portal(pg.Rect(350, 660, 25, 25))
+        self.oranPortal = Portal(pg.Rect(350, 660, 25, 25))
+        self.bluePortal.portalAnimation = ['images/bluePortal.png', 'images/animatePortal.png']
+        self.oranPortal.portalAnimation = ['images/orangePortal.png', 'images/animatePortal.png']
+
+        self.score, self.level, self.topScores = 0, 0, []
+
+        # Fill topScores with values in textFile
+        f = open('highscores.txt', 'r')
+        f1 = f.readlines()
+        for s in f1:
+            self.topScores.append(int(s))
+        f.close()
+        self.topScores.sort(reverse=True)
+
         self.finished = False
         self.BLACK = (0, 0, 0)
         self.WHITE = (255, 255, 255)
@@ -573,11 +643,15 @@ class Game:
                 # self.blinky.velocity = -Player.SPEED * movement[k]
                 # self.pinky.velocity = Enemy.SPEED * movement[k]
                 # self.inky.velocity = Enemy.SPEED * movement[k]
-            elif k == K_x:
-                # shoot blue portal
-                pass
             elif k == K_c:
+                # shoot blue portal
+                self.bluePortal.create_portal(self)
+                self.audio.play_sound(3)
+                pass
+            elif k == K_v:
                 # shoot orange portal
+                self.oranPortal.create_portal(self)
+                self.audio.play_sound(3)
                 pass
         elif e_type == QUIT or (e_type == KEYUP and event.key == K_ESCAPE):
             self.finished = True
@@ -607,10 +681,19 @@ class Game:
         self.grid.update()
 
         self.player.update(game=self)
+        self.bluePortal.update(game=self)
+        self.oranPortal.update(game=self)
+
         if self.player.lives == 0:
             self.gameOver = 1
             self.player.lives = 3
             self.topScores.append(self.score)
+
+            # add newest score to highscores.txt
+            f = open('highscores.txt', 'a')
+            f.write(f'{self.score}')
+            f.close()
+
             self.topScores.sort(reverse=True)
             self.score, self.level = 0, 1
             self.grid.reset_grid()
@@ -627,7 +710,7 @@ class Game:
             self.surface.blit(self.gOver1, self.gOver1Rect)
             self.menu()
 
-        if self.gameOver != 1:
+        else:
 
             if self.mainClock.get_time() % random.randint(1, 40) == 0:
                 self.bCount = random.randint(1, 4)
@@ -692,14 +775,13 @@ class Game:
         self.surface.blit(self.mImage, (0, 0))
         self.mAnimate.update(game=self)
 
-        sett = Settings()
         # Make the Play button.
-        play_button = Button(sett, self.surface, "Play")
+        play_button = Button(self.surface, "Play")
         play_button.rect.top += 200
         play_button.prep_msg("Play")
 
         # Make the HighScore button.
-        hScore_button = Button(sett, self.surface, "Highscores")
+        hScore_button = Button(self.surface, "Highscores")
         hScore_button.rect.top += 250
         hScore_button.prep_msg("Highscores")
 
@@ -757,14 +839,34 @@ class Game:
                         key_pressed = True
                     if score_clicked:
                         self.highScores()
+                else:
+                    mouse_x, mouse_y = pg.mouse.get_pos()
+                    play_hover = play_button.rect.collidepoint(mouse_x, mouse_y)
+                    score_hover = hScore_button.rect.collidepoint(mouse_x, mouse_y)
+                    if play_hover:
+                        play_button.text_color = (255, 255, 255)
+                        play_button.prep_msg("Play")
+                        play_button.draw_button()
+                    else:
+                        play_button.text_color = play_button.temp_color
+                        play_button.prep_msg("Play")
+                        play_button.draw_button()
+                    if score_hover:
+                        hScore_button.text_color = (255, 255, 255)
+                        hScore_button.prep_msg("Highscores")
+                        hScore_button.draw_button()
+                    else:
+                        hScore_button.text_color = hScore_button.temp_color
+                        hScore_button.prep_msg("Highscores")
+                        hScore_button.draw_button()
             time.sleep(0.02)
         self.m = 0  # menu is off
         self.play()
 
     def highScores(self):
         self.h = 1  # highscores is on
-        self.surface.fill(self.BACKGROUND_COLOR)
 
+        self.surface.fill(self.BACKGROUND_COLOR)
         text = self.bitFont.render('High Scores:', True, (249, 241, 0), (0, 0, 0))
         text0 = self.bitFont.render(f'#1: {self.topScores[0]}', True, (249, 0, 0), (0, 0, 0))
         text1 = self.bitFont.render(f'#2: {self.topScores[1]}', True, (249, 141, 224), (0, 0, 0))
