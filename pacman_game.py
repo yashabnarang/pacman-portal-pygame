@@ -247,6 +247,8 @@ class Player:
             game.inky.rect.left, game.inky.rect.top = 230, 305
             game.clyde.rect.left, game.clyde.rect.top = 285, 305
             self.lives -= 1
+            if self.lives == 0:
+                game.surface.blit(game.gOver0, game.gOver0Rect)
             self.pacAnimation = ['images/pac0.png', 'images/pac1.png', 'images/pac2.png']
             self.currentFrame, self.death, self.velocity = 0, 0, Vector()
             game.update()
@@ -631,12 +633,9 @@ class Game:
         self.WALL_COLOR = (255, 0, 0)
         self.FPS = 60
 
-        self.gOver0 = self.bitFont.render('Game Over', True, self.WHITE, self.BLACK)
+        self.gOver0 = self.bitFont.render('Game Over... Play Again?', True, self.WHITE, self.BLACK)
         self.gOver0Rect = self.gOver0.get_rect()
-        self.gOver0Rect.center = (285, 250)
-        self.gOver1 = self.bitFont.render('Returning To Main Menu', True, self.WHITE, self.BLACK)
-        self.gOver1Rect = self.gOver1.get_rect()
-        self.gOver1Rect.center = (285, 300)
+        self.gOver0Rect.center = (275, 325)
 
         pg.display.set_caption(title)
         self.surface = pg.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT), 0, 32)
@@ -720,7 +719,6 @@ class Game:
         self.player.update(game=self)
         self.bluePortal.update(game=self)
         self.oranPortal.update(game=self)
-
         if self.player.lives == 0:
             self.gameOver = 1
             self.player.lives = 3
@@ -740,11 +738,9 @@ class Game:
             self.pinky.rect.left, self.pinky.rect.top = 259, 305
             self.inky.rect.left, self.inky.rect.top = 230, 305
             self.clyde.rect.left, self.clyde.rect.top = 285, 305
-            # Display Game Over (Not Currently Working)
             self.surface.fill(self.BACKGROUND_COLOR)
             self.surface.blit(self.bImage, (0, 46))
             self.surface.blit(self.gOver0, self.gOver0Rect)
-            self.surface.blit(self.gOver1, self.gOver1Rect)
             self.menu()
 
         else:
@@ -810,7 +806,6 @@ class Game:
 
     def menu(self):
         self.m = 1  # menu is on
-        self.gameOver = 0  # gameover is off
         # music
         if not pg.mixer.music.get_busy():
             pg.mixer.music.load('sounds/Arsenic1987_PacmanRemix.mp3')
@@ -869,6 +864,10 @@ class Game:
             self.mAnimate.velocity = Enemy.SPEED * Vector(1 * temp, 0)
             self.surface.blit(self.mImage, (0, 0))
             if itemp < 300:
+                if count < 50 and self.gameOver == 1:
+                    self.surface.blit(self.gOver0, self.gOver0Rect)
+                elif self.gameOver == 1:
+                    self.gameOver = 0
                 if self.mAnimate.velocity == Enemy.SPEED * Vector(-1, 0):
                     self.mAnimate.rect.left = self.mAnimate.rect.left
                     self.mAnimate.startF, self.mAnimate.endF = 0, 2
