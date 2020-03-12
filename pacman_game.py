@@ -298,7 +298,7 @@ class Enemy:
         self.enemyAnimation = ['images/blinky0.png', 'images/blinky1.png', 'images/blinky2.png', 'images/blinky3.png',
                                'images/blinky4.png', 'images/blinky5.png', 'images/blinky6.png', 'images/blinky7.png',
                                'images/run0.png', 'images/run1.png']
-        self.currentFrame, self.animationDirection = 0, 0
+        self.currentFrame, self.animationDirection, self.portalPower = 0, 0, 0
         self.startF, self.endF = 0, 1  # len(self.enemyAnimation) - 1
         self.rect = rect
         self.velocity = velocity
@@ -332,7 +332,8 @@ class Enemy:
     def move(self, game):
         if self.velocity == Vector():
             return
-
+        if game.level >= 3:
+            self.portalPower = 1
         if game.m == 1:
             self.rect.left += self.velocity.x
             self.rect.top += self.velocity.y
@@ -362,6 +363,18 @@ class Enemy:
         self.limit_to_screen(game)
 
     def check_collisions(self, game):
+        if game.bluePortal.active == 1 and game.oranPortal.active == 1 and self.portalPower == 1:
+            if self.rect.colliderect(game.bluePortal.rect):
+                game.audio.play_sound(4)
+                self.rect.left, self.rect.top = game.oranPortal.rect.left, game.oranPortal.rect.top
+                game.bluePortal.remove_portal()
+                game.oranPortal.remove_portal(400)
+            if self.rect.colliderect(game.oranPortal.rect):
+                game.audio.play_sound(4)
+                self.rect.left, self.rect.top = game.bluePortal.rect.left, game.bluePortal.rect.top
+                game.bluePortal.remove_portal()
+                game.oranPortal.remove_portal(400)
+
         for j in range(len(game.gWalls)):
             if self.rect.colliderect(game.gWalls[j]):
                 return True
@@ -623,7 +636,6 @@ class Game:
         self.oranPortal.portalAnimation = ['images/orangePortal.png', 'images/animatePortal.png']
 
         self.score, self.level, self.topScores = 0, 0, []
-
         # Fill topScores with values in textFile
         f = open('highscores.txt', 'r')
         f1 = f.readlines()
@@ -732,7 +744,7 @@ class Game:
 
             # add newest score to highscores.txt
             f = open('highscores.txt', 'a')
-            f.write(f'{self.score}')
+            f.write(f'\n{self.score}')
             f.close()
 
             self.topScores.sort(reverse=True)
