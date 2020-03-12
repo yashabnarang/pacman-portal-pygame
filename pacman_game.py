@@ -113,7 +113,7 @@ class Grid:
             self.game.inky.startF, self.game.inky.endF = 0, 1
             self.game.clyde.startF, self.game.clyde.endF = 0, 1
             self.game.blinky.currentFrame, self.game.pinky.currentFrame, self.game.inky.currentFrame, \
-                self.game.clyde.currentFrame = 0, 0, 0, 0
+            self.game.clyde.currentFrame = 0, 0, 0, 0
             self.game.score += 50
         if len(self.nodes) == 0:
             self.game.level += 1
@@ -362,8 +362,8 @@ class Enemy:
         self.limit_to_screen(game)
 
     def check_collisions(self, game):
-        for j in range(len(game.walls)):
-            if self.rect.colliderect(game.walls[j]):
+        for j in range(len(game.gWalls)):
+            if self.rect.colliderect(game.gWalls[j]):
                 return True
         return False
 
@@ -610,6 +610,12 @@ class Game:
         self.walls = [w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19, w20, w21,
                       w22, w23, w24, w25, w26, w27, w28, w29, w30, w31, w32, w33, w34, w35, w36, w37, w38, w39, w40]
 
+        # Static Walls (Ghosts/Walls)
+        self.gWalls = self.walls
+        self.gWalls[21] = Player(pg.Rect(320, 280, 20, 75))
+        self.gWalls.append(Player(pg.Rect(200, 280 + 55, 140, 20)))
+        self.gWalls.append(Player(pg.Rect(200, 280, 20, 75)))
+
         # Portals
         self.bluePortal = Portal(pg.Rect(350, 660, 25, 25))
         self.oranPortal = Portal(pg.Rect(350, 660, 25, 25))
@@ -712,7 +718,7 @@ class Game:
         self.surface.blit(text3, textRect3)
 
         # Test Rect
-        # pg.draw.rect(self.surface, self.WALL_COLOR, (210, 390, 140, 30))
+        # pg.draw.rect(self.surface, self.WALL_COLOR, (200, 280, 140, 75))
 
         self.grid.update()
 
@@ -934,6 +940,11 @@ class Game:
                         hScore_button.draw_button()
             time.sleep(0.02)
         self.m = 0  # menu is off
+        # reset ghosts
+        self.blinky.rect.left, self.blinky.rect.top = 259, 250
+        self.pinky.rect.left, self.pinky.rect.top = 259, 305
+        self.inky.rect.left, self.inky.rect.top = 230, 305
+        self.clyde.rect.left, self.clyde.rect.top = 285, 305
         self.play()
 
     def highScores(self):
@@ -951,7 +962,7 @@ class Game:
             text.get_rect(), text0.get_rect(), text1.get_rect(), text2.get_rect(), \
             text3.get_rect(), text4.get_rect(), text5.get_rect()
         textRect.center, textRect0.center, textRect1.center, textRect2.center, textRect3.center, textRect4.center, \
-            textRect5.center = (285, 150), (285, 200), (285, 250), (285, 300), (285, 350), (285, 400), (285, 500)
+        textRect5.center = (285, 150), (285, 200), (285, 250), (285, 300), (285, 350), (285, 400), (285, 500)
 
         # Wait for Keypress To Move To Next State
         key_pressed = False
